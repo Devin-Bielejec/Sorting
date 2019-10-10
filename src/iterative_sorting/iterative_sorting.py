@@ -61,14 +61,37 @@ def selection_sort(arr):
         arr[smallest_index] = temp
     return arr
 
+"""
+### Algorithm
+1. Loop through your array
+    - Compare each element to its neighbor
+    - If elements in wrong position (relative to each other, swap them)
+2. If no swaps performed, stop. Else, go back to the element at index 0 and repeat step 1.
+"""
+
 print(selection_sort([10,9,8, -1, 15, 3, 2]))
+
 # TO-DO:  implement the Bubble Sort function below
 def bubble_sort( arr ):
-
+    count = 0
+    while count == 0:
+        for i in range(len(arr)-1):
+            if count == 2:
+                break
+            if arr[i] > arr[i+1]:
+                temp = arr[i]
+                arr[i] = arr[i+1]
+                arr[i+1] = temp
+                count = 0
+            else:
+                count += 1
     return arr
 
+print("bubble",bubble_sort([3,2,1]))
 
-# STRETCH: implement the Count Sort function below
-def count_sort( arr, maximum=-1 ):
 
-    return arr
+
+# # STRETCH: implement the Count Sort function below
+# def count_sort( arr, maximum=-1 ):
+
+#     return arr
