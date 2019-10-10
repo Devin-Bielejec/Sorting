@@ -1,11 +1,30 @@
-# TO-DO: complete the helpe function below to merge 2 sorted arrays
-def merge( arrA, arrB ):
-    elements = len( arrA ) + len( arrB )
-    merged_arr = [0] * elements
-    # TO-DO
-    
-    return merged_arr
+def merge( A,B ):
+    C = A + B
+    a = 0
+    b = 0
+    for c in range(len(C) - 1):
+        print(A[a],B[b])
+        #If a is smaller than b, first value is A[a], then increase a
+        if A[a] <= B[b]:
+            C[c] = A[a]
+            a += 1
+        #Else first value is B[b], so increase b
+        else:
+            C[c] = B[b]
+            b += 1
+    return C
 
+print(merge([2,4,5,7], [1,2,3,6]))
+
+"""
+### Algorithm
+```
+1. While your data set contains more than one item, split it in half
+2. Once you have gotten down to a single element, you have also *sorted* that element 
+   (a single element cannot be "out of order")
+3. Start merging your single lists of one element together into larger, sorted sets
+4. Repeat
+"""
 
 # TO-DO: implement the Merge Sort function below USING RECURSION
 def merge_sort( arr ):
