@@ -12,18 +12,23 @@
     
     c. When the correct index is found, copy temp into this position
 """
+def swap(a, b, li):
+    temp = a
+    a = b
+    b = temp
+    return a, b
 
 def insertionSort(A):
-    for i in range(1, len(A)):
-        cur = A[i]
-        j = i - 1
-        while A[j] > cur and j >= 0:
-            #since prev value is larger, prev = cur
-            A[j+1] = A[j]
-            #Previous index decreases by 1
-            j = j - 1
-        #Set 
-        A[j+1] = cur
+    for index1 in list(range(1, len(A))):
+        for index2 in list(range(index1-1, -1, -1)):
+            if A[index1] < A[index2]:
+                #swap items
+                temp = A[index1]
+                A[index1] = A[index2]
+                A[index2] = temp
+                index1 -= 1
+            else:
+                break 
     return A
 
 print(insertionSort([5,3,2,1]))
