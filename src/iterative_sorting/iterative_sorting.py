@@ -52,8 +52,6 @@ print(insertionSort([5,3,2,1]))
 def selection_sort(A):
     #Loop through all but last element
     for index1 in range(len(A)-1):
-        print(A)
-        print(A[index1])
         indexMin = index1
         for index2 in range(index1, len(A)):
             if A[index2] < A[indexMin]:
@@ -77,20 +75,17 @@ print(selection_sort([14, 6, 3, 5, 32, -1, -2, 4, 10 , 2]))
 
 
 # TO-DO:  implement the Bubble Sort function below
-def bubble_sort( arr ):
-    count = 0
-    while count == 0:
-        for i in range(len(arr)-1):
-            if count == 2:
-                break
-            if arr[i] > arr[i+1]:
-                temp = arr[i]
-                arr[i] = arr[i+1]
-                arr[i+1] = temp
-                count = 0
-            else:
+def bubble_sort(A):
+    count = 1
+    while count > 0:
+        print(A)
+        count = 0
+        for i in range(len(A)-1):
+            if A[i] > A[i+1]:
+                swap(i, i+1, A)
                 count += 1
-    return arr
+    return A    
+    
 
 print("bubble",bubble_sort([3,2,1]))
 
