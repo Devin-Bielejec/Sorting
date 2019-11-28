@@ -92,6 +92,33 @@ print("bubble",bubble_sort([3,2,1]))
 
 
 # # STRETCH: implement the Count Sort function below
-# def count_sort( arr, maximum=-1 ):
+def count_sort(A):
+    #make a hash
+    #make an empty array of the same length
+    hash = {}
+    sol = []
+    for item in A:
+        if item in hash:
+            hash[item] += 1
+        else:
+            hash[item] = 1
+        sol.append(0) 
 
-#     return arr
+    #Cumulative hash
+    total = 0
+    for i in range(1, max(A)+1):
+        if i in hash:
+            total += hash[i]
+            hash[i] = total
+        else:
+            hash[i] = total
+
+    #loop through original list backwards
+    A.reverse()
+    for itemA in A:
+        sol[hash[itemA]-1] = itemA
+        hash[itemA] -= 1
+    return sol
+
+
+count_sort([1,5,3,2,3,4,4,10])
