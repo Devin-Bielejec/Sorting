@@ -93,6 +93,12 @@ print("bubble",bubble_sort([3,2,1]))
 
 # # STRETCH: implement the Count Sort function below
 def count_sort(A):
+    if len(A) == 0:
+        return []
+
+    for item in A:
+        if item < 0:
+            return "Error, negative numbers not allowed in Count Sort"
     #make a hash
     #make an empty array of the same length
     hash = {}
@@ -106,7 +112,7 @@ def count_sort(A):
 
     #Cumulative hash
     total = 0
-    for i in range(1, max(A)+1):
+    for i in range(0, max(A)+1):
         if i in hash:
             total += hash[i]
             hash[i] = total
