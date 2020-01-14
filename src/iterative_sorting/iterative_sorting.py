@@ -12,18 +12,23 @@
     
     c. When the correct index is found, copy temp into this position
 """
+def swap(index1, index2, li):
+    temp = li[index1]
+    li[index1] = li[index2]
+    li[index2] = temp
+    return li
+
 
 def insertionSort(A):
-    for i in range(1, len(A)):
-        cur = A[i]
-        j = i - 1
-        while A[j] > cur and j >= 0:
-            #since prev value is larger, prev = cur
-            A[j+1] = A[j]
-            #Previous index decreases by 1
-            j = j - 1
-        #Set 
-        A[j+1] = cur
+    for index1 in range(1, len(A)):
+        for index2 in range(index1-1, -1, -1):
+            if A[index1] < A[index2]:
+                #swap items
+                swap(index1, index2, A)
+                #Reduce index1 by 1 because it has moved to the left
+                index1 -= 1
+            else:
+                break 
     return A
 
 print(insertionSort([5,3,2,1]))
@@ -44,22 +49,21 @@ print(insertionSort([5,3,2,1]))
 
 
 # TO-DO: Complete the selection_sort() function below 
-def selection_sort(arr):
-    # loop through n-1 elements
-    for i in range(0, len(arr) - 1):
-        cur_index = i
-        smallest_index = cur_index
-        # TO-DO: find next smallest element
-        # (hint, can do in 3 loc)
-        for j in range(i, len(arr)):
-            if (arr[j] < arr[smallest_index]):
-                smallest_index = j 
+def selection_sort(A):
+    #Loop through all but last element
+    for index1 in range(len(A)-1):
+        indexMin = index1
+        for index2 in range(index1, len(A)):
+            if A[index2] < A[indexMin]:
+                indexMin = index2
+        #Swap current elemtn with smallest element
+        if A[index1] > A[indexMin]:
+            swap(index1, indexMin, A) 
+    return A
 
-        # TO-DO: swap
-        temp = arr[cur_index]
-        arr[cur_index] = arr[smallest_index]
-        arr[smallest_index] = temp
-    return arr
+
+
+print(selection_sort([14, 6, 3, 5, 32, -1, -2, 4, 10 , 2]))
 
 """
 ### Algorithm
@@ -69,29 +73,57 @@ def selection_sort(arr):
 2. If no swaps performed, stop. Else, go back to the element at index 0 and repeat step 1.
 """
 
-print(selection_sort([10,9,8, -1, 15, 3, 2]))
 
 # TO-DO:  implement the Bubble Sort function below
-def bubble_sort( arr ):
-    count = 0
-    while count == 0:
-        for i in range(len(arr)-1):
-            if count == 2:
-                break
-            if arr[i] > arr[i+1]:
-                temp = arr[i]
-                arr[i] = arr[i+1]
-                arr[i+1] = temp
-                count = 0
-            else:
+def bubble_sort(A):
+    count = 1
+    while count > 0:
+        count = 0
+        for i in range(len(A)-1):
+            if A[i] > A[i+1]:
+                swap(i, i+1, A)
                 count += 1
-    return arr
+    return A    
+    
 
 print("bubble",bubble_sort([3,2,1]))
 
 
 
 # # STRETCH: implement the Count Sort function below
-# def count_sort( arr, maximum=-1 ):
+def count_sort(A):
+    if len(A) == 0:
+        return []
 
-#     return arr
+    for item in A:
+        if item < 0:
+            return "Error, negative numbers not allowed in Count Sort"
+    #make a hash
+    #make an empty array of the same length
+    hash = {}
+    sol = []
+    for item in A:
+        if item in hash:
+            hash[item] += 1
+        else:
+            hash[item] = 1
+        sol.append(0) 
+
+    #Cumulative hash
+    total = 0
+    for i in range(0, max(A)+1):
+        if i in hash:
+            total += hash[i]
+            hash[i] = total
+        else:
+            hash[i] = total
+
+    #loop through original list backwards
+    A.reverse()
+    for itemA in A:
+        sol[hash[itemA]-1] = itemA
+        hash[itemA] -= 1
+    return sol
+
+
+count_sort([1,5,3,2,3,4,4,10])
