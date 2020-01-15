@@ -1,4 +1,4 @@
-# TO-DO: complete the helpe function below to merge 2 sorted arrays
+# TO-DO: complete the helper function below to merge 2 sorted arrays
 def merge( arrA, arrB ):
     elements = len( arrA ) + len( arrB )
     merged_arr = [0] * elements
@@ -22,10 +22,9 @@ def merge( arrA, arrB ):
 4. Repeat step 3 until the entire data set has been reassembled
 """
 
-print(merge([1,5,6], [7,8,10]))
-
 # TO-DO: implement the Merge Sort function below USING RECURSION
 def merge_sort( arr ):
+    #chicken
     if len(arr) == 0:
         return arr
     # TO-DO
